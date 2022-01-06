@@ -17,10 +17,10 @@
                         <div class="px-6 py-4 flex items-center">
                             <x-jet-input wire:model="search" class="flex-1 mr-3" type="text" placeholder="Escriba lo que quiera buscar"></x-jet-input>
 
-                            <livewire:create-post>
+                            <livewire:create-post />
                         </div>
-
-                        <table class="min-w-full divide-y divide-gray-200">
+                        @if(count($posts))
+                            <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th scope="col"
@@ -43,7 +43,7 @@
                             <tbody class="bg-white divide-y divide-gray-200">
                                 <tr>
                                     @foreach ($posts as $post)
-                                        
+
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm text-gray-900">{{ $post->id }}</div>
                                     </td>
@@ -64,6 +64,12 @@
                                 <!-- More people... -->
                             </tbody>
                         </table>
+                        @else
+                            <div class="px-6 py-4">
+                                No existe ningún registro coincidente
+                            </div>
+                        @endif
+
                     </div>
                 </div>
             </div>
