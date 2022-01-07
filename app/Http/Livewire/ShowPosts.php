@@ -3,13 +3,33 @@
 namespace App\Http\Livewire;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class ShowPosts extends Component
 {
+    use WithFileUploads;
+
     public $search;
     public $sort = 'id';
     public $direction = 'desc';
+    public $photo;
+
+//0Hjk0aRVBOzZQAdc7EsRXhNlEmh2NqoBXVQFkqJI.jpg
+
+    public function export(){
+        return Storage::disk('public')->download('0Hjk0aRVBOzZQAdc7EsRXhNlEmh2NqoBXVQFkqJI.jpg');
+    }
+
+    public function savePhoto(){
+        $this->validate([
+            'photo' => 'image'
+        ]);
+
+
+        $this->photo->storeAs('storage/images/livewire_files', $this->photo->getClientOriginalName(), 'public_uploads');
+    }
 
     protected $listeners = ['render' => 'render'];
 

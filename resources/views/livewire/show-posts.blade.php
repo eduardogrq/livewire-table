@@ -19,6 +19,37 @@
 
                             <livewire:create-post />
                         </div>
+
+                        <form wire:submit.prevent="savePhoto">
+
+                            <div
+                                @error('photo'){{ $message }}@enderror
+                                x-data="{ isUploading: false, progress: 0 }"
+                                x-on:livewire-upload-start="isUploading = true"
+                                x-on:livewire-upload-finish="isUploading = false"
+                                x-on:livewire-upload-error="isUploading = false"
+                                x-on:livewire-upload-progress="progress = $event.detail.progress"
+                            >
+                                <!-- File Input -->
+                                <input type="file" wire:model="photo">
+
+                                <!-- Progress Bar -->
+                                <div x-show="isUploading">
+                                    <progress max="100" x-bind:value="progress"></progress>
+                                </div>
+
+                                <button type="submit">Enviar</button>
+
+                            </div>
+
+                        </form>
+
+
+
+                        <div>
+                            <button wire:click="export">Descargar</button>
+                        </div>
+
                         @if(count($posts))
                             <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
