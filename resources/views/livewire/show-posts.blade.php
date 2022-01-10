@@ -96,6 +96,7 @@
 
                                 <!-- More people... -->
                             </tbody>
+                                {{$posts->links()}}
                         </table>
                         @else
                             <div class="px-6 py-4">
