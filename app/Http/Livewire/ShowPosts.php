@@ -51,6 +51,12 @@ class ShowPosts extends Component
                 ->layout('layouts.base');
     }
 
+//    Function to update de search variable, this to show results in page 1 or reset the paginate
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function order($sort){
 
 //        Conditional that is executed when click in the same column to sort
