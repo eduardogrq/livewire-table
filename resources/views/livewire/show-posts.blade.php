@@ -50,6 +50,12 @@
 {{--                            <button wire:click="export">Descargar</button>--}}
 {{--                        </div>--}}
 
+                        <form action="{{'createMedia'}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="file" name="image" id="image">
+                            <button type="submit">Enviar</button>
+                        </form>
+
                         @if(count($posts))
                             <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
@@ -89,14 +95,22 @@
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                        {{ $post->getFirstMedia() }}
                                     </td>
+
+
+
+
                                 </tr>
 
                                 @endforeach
 
                                 <!-- More people... -->
                             </tbody>
-                                {{$posts->links()}}
+                                <div class="px-4">
+                                    {{$posts->links()}}
+                                </div>
+
                         </table>
                         @else
                             <div class="px-6 py-4">
