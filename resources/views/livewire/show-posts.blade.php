@@ -20,7 +20,7 @@
                             <livewire:create-post />
                         </div>
 
-                        <form wire:submit.prevent="savePhoto">
+                        {{--<form wire:submit.prevent="savePhoto">
 
                             <div
                                 @error('photo'){{ $message }}@enderror
@@ -42,13 +42,11 @@
 
                             </div>
 
-                        </form>
+                        </form>--}}
 
-
-
-                        <div>
+                        {{--<div>
                             <button wire:click="export">Descargar</button>
-                        </div>
+                        </div>--}}
 
                         @if(count($posts))
                             <table class="min-w-full divide-y divide-gray-200">
