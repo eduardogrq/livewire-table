@@ -20,33 +20,41 @@
                             <livewire:create-post />
                         </div>
 
-                        {{--<form wire:submit.prevent="savePhoto">
+{{--                        Form to save photos--}}
+{{--                        <form wire:submit.prevent="savePhoto">--}}
 
-                            <div
-                                @error('photo'){{ $message }}@enderror
-                                x-data="{ isUploading: false, progress: 0 }"
-                                x-on:livewire-upload-start="isUploading = true"
-                                x-on:livewire-upload-finish="isUploading = false"
-                                x-on:livewire-upload-error="isUploading = false"
-                                x-on:livewire-upload-progress="progress = $event.detail.progress"
-                            >
-                                <!-- File Input -->
-                                <input type="file" wire:model="photo">
+{{--                            <div--}}
+{{--                                @error('photo'){{ $message }}@enderror--}}
+{{--                                x-data="{ isUploading: false, progress: 0 }"--}}
+{{--                                x-on:livewire-upload-start="isUploading = true"--}}
+{{--                                x-on:livewire-upload-finish="isUploading = false"--}}
+{{--                                x-on:livewire-upload-error="isUploading = false"--}}
+{{--                                x-on:livewire-upload-progress="progress = $event.detail.progress"--}}
+{{--                            >--}}
+{{--                                <!-- File Input -->--}}
+{{--                                <input type="file" wire:model="photo">--}}
 
-                                <!-- Progress Bar -->
-                                <div x-show="isUploading">
-                                    <progress max="100" x-bind:value="progress"></progress>
-                                </div>
+{{--                                <!-- Progress Bar -->--}}
+{{--                                <div x-show="isUploading">--}}
+{{--                                    <progress max="100" x-bind:value="progress"></progress>--}}
+{{--                                </div>--}}
 
-                                <button type="submit">Enviar</button>
+{{--                                <button type="submit">Enviar</button>--}}
 
-                            </div>
+{{--                            </div>--}}
 
-                        </form>--}}
+{{--                        </form>--}}
 
-                        {{--<div>
-                            <button wire:click="export">Descargar</button>
-                        </div>--}}
+{{--                        Button to download a file--}}
+{{--                        <div>--}}
+{{--                            <button wire:click="export">Descargar</button>--}}
+{{--                        </div>--}}
+
+                        <form action="{{'createMedia'}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="file" name="image" id="image">
+                            <button type="submit">Enviar</button>
+                        </form>
 
                         @if(count($posts))
                             <table class="min-w-full divide-y divide-gray-200">
@@ -87,13 +95,22 @@
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                        {{ $post->getFirstMedia() }}
                                     </td>
+
+
+
+
                                 </tr>
 
                                 @endforeach
 
                                 <!-- More people... -->
                             </tbody>
+                                <div class="px-4">
+                                    {{$posts->links()}}
+                                </div>
+
                         </table>
                         @else
                             <div class="px-6 py-4">
