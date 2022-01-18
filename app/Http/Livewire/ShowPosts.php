@@ -17,6 +17,7 @@ class ShowPosts extends Component
     public $sort = 'id';
     public $direction = 'desc';
     public $photo;
+    public $radioButton = 0;
 
 //0Hjk0aRVBOzZQAdc7EsRXhNlEmh2NqoBXVQFkqJI.jpg
 
@@ -72,5 +73,14 @@ class ShowPosts extends Component
             $this->direction = 'asc';
         }
     }
+
+//    public function disableButton(Request $request){
+//        if($this->radioButton == 0){
+//            dd($request);
+//        } else{
+//            $this->radioButton = 0;
+//        }
+//
+//    }
 
 }
