@@ -50,7 +50,7 @@
         @livewireScripts
 
         <script>
-            Livewire.on('alert', function(message){
+            Livewire.on('alert', message => {
                 Swal.fire(
                 'Excelente!',
                 message,

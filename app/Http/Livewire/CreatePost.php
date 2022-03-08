@@ -8,6 +8,10 @@ use Livewire\Component;
 
 class CreatePost extends Component
 {
+
+    protected $rules = [
+        'name' => 'required'
+    ];
     // Variable que nos ayuda a abrir y cerrar nuestro modal
     public $open = false;
 
